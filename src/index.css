@@ -1,0 +1,129 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 216 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 216 100% 50%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .assessment-option-label {
+    @apply relative flex cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm focus:outline-none hover:border-primary transition duration-200;
+  }
+  
+  .assessment-option-label-checked {
+    @apply border-primary ring-2 ring-primary;
+  }
+  
+  .assessment-progress-step {
+    @apply flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white text-sm font-medium;
+  }
+  
+  .assessment-progress-step-active {
+    @apply border-primary bg-primary text-white;
+  }
+  
+  .assessment-progress-step-completed {
+    @apply border-primary bg-primary text-white;
+  }
+  
+  .assessment-progress-connector {
+    @apply flex-auto border-t-2 border-gray-300;
+  }
+  
+  .assessment-progress-connector-active {
+    @apply border-primary;
+  }
+  
+  /* Fluent 2 specific styles */
+  .fluent-card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-xl;
+  }
+  
+  .fluent-card-header {
+    @apply bg-gradient-to-r from-blue-50 to-blue-100/30 border-b border-gray-100;
+  }
+  
+  .fluent-depth {
+    @apply shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+  
+  .fluent-button {
+    @apply bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md transition-all duration-200 shadow-sm hover:shadow focus:ring-2 focus:ring-primary/25 focus:outline-none;
+  }
+  
+  .fluent-item {
+    @apply bg-white hover:bg-slate-50 rounded-lg p-4 transition-all duration-200 border border-transparent hover:border-gray-200;
+  }
+}

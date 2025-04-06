@@ -168,12 +168,8 @@ const CategoryStep = ({
             // Use null for cleaner conditional rendering when back button is hidden
             null
           )}
-          <Button
-            onClick={onNext}
-            disabled={!isComplete} // Disable button if not all required questions are answered
-            className="lowercase" // Apply branding
-          >
-            {nextButtonText}
+          <Button onClick={onNext}>
+            <FormattedText>next: {nextStepName}</FormattedText>
           </Button>
         </div>
       </Card> // Ensure Card closing tag is present

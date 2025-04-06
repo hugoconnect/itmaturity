@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AssessmentResult, UserInfo } from "@/types/assessment";
@@ -6,6 +5,7 @@ import ResultsOverview from "@/components/results/ResultsOverview";
 import ActionItems from "@/components/results/ActionItems";
 import CallToAction from "@/components/results/CallToAction";
 import { Button } from "@/components/ui/button";
+import { FormattedText } from '../components/FormattedText';
 
 const Results = () => {
   const navigate = useNavigate();
@@ -59,11 +59,23 @@ const Results = () => {
 
   return (
     <div className="container py-8 max-w-4xl">
+      <h1 className="text-3xl font-bold mb-4">
+        <FormattedText>Your IT Maturity Results</FormattedText>
+      </h1>
       <ResultsOverview result={results} userInfo={userInfo} />
       
       <div className="my-8">
         <ActionItems result={results} />
         <CallToAction />
+      </div>
+      
+      <div className="result-section">
+        <h2 className="text-2xl font-semibold mb-3">
+          <FormattedText>IT Responsibility & Support</FormattedText>
+        </h2>
+        <p className="text-gray-600">
+          <FormattedText>{resultText}</FormattedText>
+        </p>
       </div>
       
       <div className="text-center mt-8">

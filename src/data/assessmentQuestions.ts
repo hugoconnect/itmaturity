@@ -1,11 +1,11 @@
-
-import { Question } from "../types/assessment";
+import { Question } from '@/types/assessment';
 
 export const questions: Question[] = [
   // IT Responsibility & Support
   {
     id: "responsibility_1",
-    text: "When IT problems occur (e.g., computer won't start, software crashes), is there a specific person internally everyone knows to go to first for help?",
+    // Don't wrap the text in FormattedText here - it will be handled by QuestionCard
+    text: "when IT problems occur (e.g., computer won't start, software crashes), is there a specific person internally everyone knows to go to first for help?",
     category: "responsibility",
   },
   {

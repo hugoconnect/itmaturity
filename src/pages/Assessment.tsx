@@ -12,11 +12,11 @@ import { FormattedText } from '../components/FormattedText';
 type Step = "responsibility" | "alignment" | "technology" | "security" | "user-info";
 
 const steps = [
-  { id: "responsibility", name: "IT Responsibility & Support" },
-  { id: "alignment", name: "Business & Technology Alignment" },
-  { id: "technology", name: "Core Technology & Reliability" },
-  { id: "security", name: "Security & Data Protection" },
-  { id: "user-info", name: "Your Info" },
+  { id: "responsibility", name: <FormattedText>IT Responsibility & Support</FormattedText> },
+  { id: "alignment", name: <FormattedText>Business & Technology Alignment</FormattedText> },
+  { id: "technology", name: <FormattedText>Core Technology & Reliability</FormattedText> },
+  { id: "security", name: <FormattedText>Security & Data Protection</FormattedText> },
+  { id: "user-info", name: <FormattedText>Your Info</FormattedText> },
 ];
 
 const Assessment = () => {

@@ -1,7 +1,7 @@
-
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { FormattedText } from '../components/FormattedText';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -11,10 +11,14 @@ const Index = () => {
       <div className="container py-16 max-w-6xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            IT Maturity Assessment for Small Businesses
+            <FormattedText>
+              IT Maturity Assessment for Small Businesses
+            </FormattedText>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover where your business stands and get actionable steps to improve your IT infrastructure
+            <FormattedText>
+              Discover where your business stands and get actionable steps to improve your IT infrastructure
+            </FormattedText>
           </p>
         </div>
 
@@ -22,7 +26,9 @@ const Index = () => {
           <div className="space-y-6">
             <h2 className="text-2xl font-bold">Is Your IT Working For You?</h2>
             <p className="text-gray-600">
-              Small businesses and law firms face unique IT challenges. Limited resources, time constraints, and specialized needs can make managing technology difficult.
+              <FormattedText>
+                Small businesses and law firms face unique IT challenges. Limited resources, time constraints, and specialized needs can make managing technology difficult.
+              </FormattedText>
             </p>
             <p className="text-gray-600">
               Our 5-minute assessment helps you identify strengths and weaknesses in your IT setup across four key areas:

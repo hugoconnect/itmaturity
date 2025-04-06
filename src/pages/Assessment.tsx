@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Answer, UserInfo } from "@/types/assessment";
@@ -8,6 +7,7 @@ import CategoryStep from "@/components/assessment/CategoryStep";
 import UserInfoForm from "@/components/assessment/UserInfoForm";
 import ProgressIndicator from "@/components/assessment/ProgressIndicator";
 import { Card, CardContent } from "@/components/ui/card";
+import { FormattedText } from '../components/FormattedText';
 
 type Step = "responsibility" | "alignment" | "technology" | "security" | "user-info";
 
@@ -117,10 +117,14 @@ const Assessment = () => {
     <div className="container py-8 max-w-4xl">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-primary">
-          IT Health Check Assessment
+          <FormattedText>
+            IT health check assessment
+          </FormattedText>
         </h1>
         <p className="text-gray-600 mt-2">
-          This 5-minute assessment will help identify your IT strengths and areas for improvement.
+          <FormattedText>
+            this 5-minute assessment will help identify your it strengths and areas for improvement.
+          </FormattedText>
         </p>
       </div>
       

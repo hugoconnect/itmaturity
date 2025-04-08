@@ -1,6 +1,5 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AssessmentResult } from "@/types/assessment";
+import { AssessmentResult, CategoryId } from "@/types/assessment";
 import { getCategoryName, getActionItems } from "@/utils/assessmentUtils";
 import { CheckCircle } from "lucide-react";
 
@@ -10,22 +9,22 @@ interface ActionItemsProps {
 
 const ActionItems = ({ result }: ActionItemsProps) => {
   const { focusArea } = result;
-  const actionItems = getActionItems(focusArea);
+  const actionItems = getActionItems(focusArea as CategoryId);
 
   return (
     <Card className="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl">
       <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100/30 border-b border-gray-100 p-6">
         <CardTitle className="text-xl flex items-center gap-2">
           <span className="text-primary font-semibold">
-            Your IT Health Check Focus Area:
+            your IT health check focus area:
           </span>{" "}
-          {getCategoryName(focusArea)}
+          {getCategoryName(focusArea as CategoryId)}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
         <p className="mb-6 text-gray-600">
-          Based on your answers, we've identified your primary focus area for improvement. 
-          Here are some practical next steps you can take:
+          based on your answers, we've identified your primary focus area for improvement. 
+          here are some practical next steps you can take:
         </p>
         
         <div className="space-y-4">

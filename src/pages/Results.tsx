@@ -41,7 +41,7 @@ const Results = () => {
   if (loading) {
     return (
       <div className="container py-16 text-center">
-        <p>Loading your results...</p>
+        <p>loading your results...</p>
       </div>
     );
   }
@@ -49,9 +49,9 @@ const Results = () => {
   if (!results || !userInfo) {
     return (
       <div className="container py-16 text-center">
-        <p className="mb-4">No assessment results found.</p>
+        <p className="mb-4">no assessment results found.</p>
         <Button onClick={() => navigate("/assessment")}>
-          Take the Assessment
+          take the assessment
         </Button>
       </div>
     );
@@ -59,9 +59,6 @@ const Results = () => {
 
   return (
     <div className="container py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-4">
-        <FormattedText>Your IT Maturity Results</FormattedText>
-      </h1>
       <ResultsOverview result={results} userInfo={userInfo} />
       
       <div className="my-8">
@@ -69,18 +66,9 @@ const Results = () => {
         <CallToAction />
       </div>
       
-      <div className="result-section">
-        <h2 className="text-2xl font-semibold mb-3">
-          <FormattedText>IT Responsibility & Support</FormattedText>
-        </h2>
-        <p className="text-gray-600">
-          <FormattedText>{resultText}</FormattedText>
-        </p>
-      </div>
-      
       <div className="text-center mt-8">
         <Button variant="outline" onClick={handleStartNew}>
-          Start a New Assessment
+          start a new assessment
         </Button>
       </div>
     </div>

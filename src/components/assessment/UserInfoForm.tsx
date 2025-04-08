@@ -67,37 +67,37 @@ const UserInfoForm = ({ onSubmit, onBack }: UserInfoFormProps) => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="name">Your Name</Label>
+          <Label htmlFor="name">full name</Label>
           <Input
             id="name"
             name="name"
-            placeholder="John Smith"
+            placeholder="john smith"
             value={userInfo.name}
             onChange={handleChange}
             className={errors.name ? "border-red-500" : ""}
           />
           {errors.name && (
-            <p className="text-sm text-red-500">Please enter your name</p>
+            <p className="text-sm text-red-500">please enter your name</p>
           )}
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="company">Company Name</Label>
+          <Label htmlFor="company">company name</Label>
           <Input
             id="company"
             name="company"
-            placeholder="Acme Law Firm"
+            placeholder="acme law firm"
             value={userInfo.company}
             onChange={handleChange}
             className={errors.company ? "border-red-500" : ""}
           />
           {errors.company && (
-            <p className="text-sm text-red-500">Please enter your company name</p>
+            <p className="text-sm text-red-500">please enter your company name</p>
           )}
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">email address</Label>
           <Input
             id="email"
             name="email"

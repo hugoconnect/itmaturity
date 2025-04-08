@@ -1,16 +1,15 @@
-export type MaturityLevel = "reactive" | "foundational" | "managed" | "proactive" | "strategic";
+export type MaturityLevel = 'reactive' | 'foundational' | 'managed' | 'proactive' | 'strategic';
 
-export type CategoryId = "responsibility" | "alignment" | "technology" | "security"; // Renamed for clarity if used as ID
+export type CategoryId = 'responsibility' | 'alignment' | 'technology' | 'security';
 
 export interface Question {
   id: string;
   text: string;
-  category: CategoryId; // Use the renamed type if applicable
+  category: CategoryId;
   allowNA?: boolean;
-  // Add this optional property:
   scale?: {
-    minLabel?: string; // e.g., "strongly disagree"
-    maxLabel?: string; // e.g., "strongly agree"
+    minLabel?: string;
+    maxLabel?: string;
   };
 }
 
@@ -20,7 +19,7 @@ export interface Answer {
 }
 
 export interface CategoryScore {
-  category: CategoryId; // Use the renamed type if applicable
+  category: CategoryId;
   score: number;
   maxScore: number;
   percentage: number;
@@ -28,17 +27,23 @@ export interface CategoryScore {
 
 export interface AssessmentResult {
   overallScore: number;
-  maxScore: number;
-  percentage: number;
   maturityLevel: MaturityLevel;
+  scores: {
+    [key in CategoryId]: {
+      score: number;
+      count: number;
+    };
+  };
   categoryScores: CategoryScore[];
-  focusArea: CategoryId; // Use the renamed type if applicable
+  focusArea: CategoryId;
+  summary: string;
+  responsibilityText: string; // Add this line
 }
 
 export interface UserInfo {
   name: string;
-  company: string;
   email: string;
+  company: string;
 }
 
 // It might also be useful to have a Category type that includes its questions,

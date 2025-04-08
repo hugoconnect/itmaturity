@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Question, Answer } from '@/types/assessment';
+import { Question, Answer, CategoryId } from '@/types/assessment';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -16,7 +16,7 @@ interface CategoryStepProps {
   onBack: () => void;
   isFirstStep: boolean;
   isLastStep: boolean;
-  category: string;
+  category: CategoryId;
 }
 
 const CategoryStep: React.FC<CategoryStepProps> = ({

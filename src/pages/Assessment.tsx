@@ -101,6 +101,7 @@ const Assessment = () => {
         onBack={handleBack}
         isFirstStep={currentStep === "responsibility"}
         isLastStep={currentStep === "security"}
+        category={currentStep}
       />
     );
   };

@@ -9,15 +9,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import ProgressIndicator from "@/components/assessment/ProgressIndicator";
 import { FormattedText } from '@/components/FormattedText';
 
-type Step = "responsibility" | "alignment" | "technology" | "security" | "user-info";
+interface ProgressStep {
+  id: string;
+  name: JSX.Element;
+}
 
-const steps = [
-  { id: "responsibility", name: <FormattedText>IT Responsibility & Support</FormattedText> },
-  { id: "alignment", name: <FormattedText>Business & Technology Alignment</FormattedText> },
-  { id: "technology", name: <FormattedText>Core Technology & Reliability</FormattedText> },
-  { id: "security", name: <FormattedText>Security & Data Protection</FormattedText> },
-  { id: "user-info", name: <FormattedText>Your Info</FormattedText> },
+const steps: ProgressStep[] = [
+  { id: "responsibility", name: <FormattedText>IT responsibility & support</FormattedText> },
+  { id: "alignment", name: <FormattedText>business & technology alignment</FormattedText> },
+  { id: "technology", name: <FormattedText>core technology & reliability</FormattedText> },
+  { id: "security", name: <FormattedText>security & data protection</FormattedText> },
+  { id: "user-info", name: <FormattedText>your info</FormattedText> },
 ];
+
+type Step = "responsibility" | "alignment" | "technology" | "security" | "user-info";
 
 const Assessment = () => {
   const navigate = useNavigate();
@@ -84,7 +89,10 @@ const Assessment = () => {
   // Render the current step
   const renderStep = () => {
     if (currentStep === "user-info") {
-      return <UserInfoForm onSubmit={handleUserInfoSubmit} />;
+      return <UserInfoForm 
+        onSubmit={handleUserInfoSubmit} 
+        onBack={handleBack}  // Add this line
+      />;
     }
   
     const categoryQuestions = questions.filter((q) => q.category === currentStep);
@@ -111,7 +119,7 @@ const Assessment = () => {
       <Card>
         <CardContent className="pt-6">
           <h1 className="text-3xl font-bold text-primary">
-            <FormattedText>IT Health Check Assessment</FormattedText>
+            <FormattedText>IT health check assessment</FormattedText>
           </h1>
           <p className="text-gray-600 mt-2">
             <FormattedText>this 5-minute assessment will help identify your IT strengths and areas for improvement.</FormattedText>

@@ -3,7 +3,8 @@ const itContextWords = [
   'computer', 'software', 'hardware', 'network', 'server', 
   'security', 'system', 'infrastructure', 'technology',
   'support', 'service', 'backup', 'database', 'cloud',
-  'application', 'cyber', 'digital', 'technical'
+  'application', 'cyber', 'digital', 'technical', 'department',
+  'systems', 'staff', 'services', 'professional', 'manager'
 ];
 
 // Common phrases where "IT" definitely means Information Technology
@@ -17,6 +18,8 @@ const itPhrases = [
   'it professional',
   'it manager',
   'it security',
+  'it maturity',
+  'it health'
 ];
 
 export const shouldCapitalizeIT = (sentence: string, wordPosition: number, words: string[]): boolean => {
@@ -38,7 +41,9 @@ export const shouldCapitalizeIT = (sentence: string, wordPosition: number, words
 };
 
 export const formatText = (text: string): string => {
-  const words = text.split(/\s+/);
+  if (!text) return '';
+  
+  const words = text.toLowerCase().split(/\s+/);
   
   return words
     .map((word, index) => {

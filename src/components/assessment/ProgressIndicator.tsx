@@ -1,10 +1,9 @@
-
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProgressStep {
   id: string;
-  name: string;
+  name: JSX.Element;
 }
 
 interface ProgressIndicatorProps {
@@ -13,7 +12,7 @@ interface ProgressIndicatorProps {
   completedSteps: string[];
 }
 
-const ProgressIndicator = ({
+const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   steps,
   currentStep,
   completedSteps,
@@ -54,7 +53,7 @@ const ProgressIndicator = ({
                     isActive ? "text-primary" : "text-gray-500"
                   )}
                 >
-                  {step.name}
+                  <span>{step.name}</span>
                 </span>
               </div>
               {!isLastStep && (

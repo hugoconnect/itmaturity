@@ -12,33 +12,41 @@ const Index = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
             <FormattedText>
-              IT Maturity Assessment for Small Businesses
+              IT maturity assessment for small businesses
             </FormattedText>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             <FormattedText>
-              Discover where your business stands and get actionable steps to improve your IT infrastructure
+              discover where your business stands and get actionable steps to improve your IT infrastructure
             </FormattedText>
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Is Your IT Working For You?</h2>
+            <h2 className="text-2xl font-bold">
+              <FormattedText>is your IT working for you?</FormattedText>
+            </h2>
             <p className="text-gray-600">
               <FormattedText>
-                Small businesses and law firms face unique IT challenges. Limited resources, time constraints, and specialized needs can make managing technology difficult.
+                small businesses and law firms face unique IT challenges. limited resources, time constraints, and specialized needs can make managing technology difficult.
               </FormattedText>
             </p>
             <p className="text-gray-600">
-              Our 5-minute assessment helps you identify strengths and weaknesses in your IT setup across four key areas:
+              <FormattedText>
+                our 5-minute assessment helps you identify strengths and weaknesses in your IT setup across four key areas:
+              </FormattedText>
             </p>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <div className="bg-brand-light rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">1</div>
                 <div>
-                  <span className="font-semibold">People & Partnership</span>
-                  <p className="text-gray-600">Who handles your IT and how well that works</p>
+                  <span className="font-semibold">
+                    <FormattedText>people & partnership</FormattedText>
+                  </span>
+                  <p className="text-gray-600">
+                    <FormattedText>who handles your IT and how well that works</FormattedText>
+                  </p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -67,7 +75,9 @@ const Index = () => {
 
           <Card className="shadow-lg">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold mb-4">What You'll Get</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                <FormattedText>what you'll get</FormattedText>
+              </h2>
               <div className="space-y-4 mb-8">
                 <div className="flex gap-3">
                   <div className="text-brand shrink-0">
@@ -87,7 +97,9 @@ const Index = () => {
                     </svg>
                   </div>
                   <p>
-                    <span className="font-semibold">Your overall IT maturity score</span> and benchmark against industry standards
+                    <FormattedText>
+                      your overall IT maturity score and benchmark against industry standards
+                    </FormattedText>
                   </p>
                 </div>
                 <div className="flex gap-3">
@@ -156,24 +168,28 @@ const Index = () => {
               </div>
               
               <Button className="w-full text-lg py-6" onClick={() => navigate("/assessment")}>
-                Start Your Free Assessment
+                <FormattedText>start your free assessment</FormattedText>
               </Button>
               
               <p className="text-sm text-gray-500 text-center mt-4">
-                Takes approximately 5 minutes to complete
+                <FormattedText>takes approximately 5 minutes to complete</FormattedText>
               </p>
             </CardContent>
           </Card>
         </div>
 
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Why Assess Your IT Maturity?</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            <FormattedText>why assess your IT maturity?</FormattedText>
+          </h2>
           <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-            Technology should be an enabler for your business, not a constant source of frustration. Understanding where you stand is the first step toward making IT work for you.
+            <FormattedText>
+              technology should be an enabler for your business, not a constant source of frustration. understanding where you stand is the first step toward making IT work for you.
+            </FormattedText>
           </p>
           
           <Button size="lg" onClick={() => navigate("/assessment")}>
-            Take the Assessment Now
+            <FormattedText>take the assessment now</FormattedText>
           </Button>
         </div>
       </div>

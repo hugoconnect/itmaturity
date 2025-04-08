@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Answer, UserInfo } from "@/types/assessment";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { questions } from "@/data/assessmentQuestions";
+import { Answer, UserInfo } from "@/types/assessment";
 import { calculateResults } from "@/utils/assessmentUtils";
 import CategoryStep from "@/components/assessment/CategoryStep";
 import UserInfoForm from "@/components/assessment/UserInfoForm";
-import ProgressIndicator from "@/components/assessment/ProgressIndicator";
 import { Card, CardContent } from "@/components/ui/card";
-import { FormattedText } from '../components/FormattedText';
+import ProgressIndicator from "@/components/assessment/ProgressIndicator";
+import { FormattedText } from '@/components/FormattedText';
 
 type Step = "responsibility" | "alignment" | "technology" | "security" | "user-info";
 
@@ -83,59 +83,39 @@ const Assessment = () => {
 
   // Render the current step
   const renderStep = () => {
-    const categoryQuestions = questions.filter((q) => q.category === currentStep);
-    
-    switch (currentStep) {
-      case "responsibility":
-      case "alignment":
-      case "technology":
-      case "security":
-        return (
-          <CategoryStep
-            questions={categoryQuestions}
-            categoryId={currentStep}
-            answers={answers}
-            onAnswersUpdate={handleAnswersUpdate}
-            onNext={handleNext}
-            onBack={currentStep !== "responsibility" ? handleBack : undefined}
-            showBack={currentStep !== "responsibility"}
-          />
-        );
-      case "user-info":
-        return (
-          <UserInfoForm
-            onSubmit={handleUserInfoSubmit}
-            onBack={handleBack}
-          />
-        );
-      default:
-        return null;
+    if (currentStep === "user-info") {
+      return <UserInfoForm onSubmit={handleUserInfoSubmit} />;
     }
+  
+    const categoryQuestions = questions.filter((q) => q.category === currentStep);
+    const categoryAnswers = answers.filter((a) =>
+      categoryQuestions.some((q) => q.id === a.questionId)
+    );
+  
+    return (
+      <CategoryStep
+        questions={categoryQuestions}
+        answers={categoryAnswers}
+        onAnswersUpdate={handleAnswersUpdate}
+        onNext={handleNext}
+        onBack={handleBack}
+        isFirstStep={currentStep === "responsibility"}
+        isLastStep={currentStep === "security"}
+      />
+    );
   };
 
   return (
-    <div className="container py-8 max-w-4xl">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-primary">
-          <FormattedText>
-            IT health check assessment
-          </FormattedText>
-        </h1>
-        <p className="text-gray-600 mt-2">
-          <FormattedText>
-            this 5-minute assessment will help identify your it strengths and areas for improvement.
-          </FormattedText>
-        </p>
-      </div>
-      
-      <ProgressIndicator
-        steps={steps}
-        currentStep={currentStep}
-        completedSteps={completedSteps}
-      />
-      
+    <div className="container py-8">
       <Card>
         <CardContent className="pt-6">
+          <h1 className="text-3xl font-bold text-primary">
+            <FormattedText>IT Health Check Assessment</FormattedText>
+          </h1>
+          <p className="text-gray-600 mt-2">
+            <FormattedText>this 5-minute assessment will help identify your IT strengths and areas for improvement.</FormattedText>
+          </p>
+          <ProgressIndicator steps={steps} currentStep={currentStep} completedSteps={completedSteps} />
           {renderStep()}
         </CardContent>
       </Card>

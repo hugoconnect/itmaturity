@@ -129,12 +129,19 @@ const Results = () => {
                 <Download className="w-4 h-4" />
                 download results pdf
               </Button>
-              <Button 
-                size="lg"
-                variant="secondary"
-              >
-                schedule a consultation
-              </Button>
+            <Button 
+              size="lg" 
+              variant="secondary"
+              onClick={() => // <--- use camelcase onclick
+                window.open(
+                  'https://outlook.office365.com/book/Bookings@hugoconnect.com/', 
+                  '_blank', 
+                  'noopener,noreferrer'
+                )
+              } 
+            >
+              schedule a consultation
+            </Button>
             </div>
           </div>
 

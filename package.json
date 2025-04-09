@@ -9,8 +9,9 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:server": "tsc --project server/tsconfig.json", 
-    "start:server": "node server/dist/index.js" 
+    "build:server": "cd server && tsc --listfiles", 
+  "clean:server": "rm -rf server/dist", 
+  "start:server": "node server/dist/index.js" 
   },
   "dependencies": {
     "@fluentui/react-components": "^9.61.6",

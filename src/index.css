@@ -6,68 +6,49 @@
   :root {
     --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 216 100% 50%;
+    --primary: 196 46% 34%;    /* #148699 */
     --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
+    --secondary: 26 35% 65%;    /* #c9a085 */
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 216 100% 50%;
+    --ring: 222.2 84% 4.9%;
+    
+    --hugo-primary: 195 46% 34%;    /* #148699 */
+    --hugo-anchor: 26 35% 65%;      /* #c9a085 */
+    --hugo-accent: 203 17% 41%;     /* #56707c */
+    --hugo-light: 200 33% 95%;      /* #eff5f7 */
+    --hugo-dark: 209 28% 23%;       /* #2b3e4b */
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 100% 50%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }
 
@@ -75,49 +56,84 @@
   .assessment-option-label {
     @apply relative flex cursor-pointer rounded-lg border border-gray-200 bg-white p-4 shadow-sm focus:outline-none hover:border-primary transition duration-200;
   }
-  
+
   .assessment-option-label-checked {
     @apply border-primary ring-2 ring-primary;
   }
-  
+
   .assessment-progress-step {
-    @apply flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white text-sm font-medium;
+    @apply h-8 w-8 flex items-center justify-center rounded-full border-2 text-base font-semibold;
+    background-color: white;
+    color: #56707c; /* hugo-accent */
+    border-color: #56707c; /* hugo-accent */
   }
   
   .assessment-progress-step-active {
-    @apply border-primary bg-primary text-white;
+    color: #c9a085; /* hugo-anchor */
+    border-color: #c9a085; /* hugo-anchor */
+    background-color: white;
   }
   
   .assessment-progress-step-completed {
-    @apply border-primary bg-primary text-white;
+    background-color: #c9a085; /* hugo-anchor */
+    border-color: #c9a085; /* hugo-anchor */
+    color: white;
   }
-  
+
   .assessment-progress-connector {
-    @apply flex-auto border-t-2 border-gray-300;
+    @apply h-0.5 w-full;
+    background-color: #56707c; /* hugo-accent */
   }
-  
+
   .assessment-progress-connector-active {
-    @apply border-primary;
+    background-color: #c9a085; /* hugo-anchor */
   }
-  
-  /* Fluent 2 specific styles */
+
   .fluent-card {
     @apply bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-xl;
   }
-  
-  .fluent-card-header {
-    @apply bg-gradient-to-r from-blue-50 to-blue-100/30 border-b border-gray-100;
-  }
-  
+
   .fluent-depth {
     @apply shadow-md hover:shadow-lg transition-shadow duration-300;
   }
-  
+
+  .fluent-item {
+    @apply bg-white hover:bg-slate-50 rounded-lg p-4 transition-all duration-200 border border-transparent hover:border-gray-200;
+  }
+
   .fluent-button {
     @apply bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md transition-all duration-200 shadow-sm hover:shadow focus:ring-2 focus:ring-primary/25 focus:outline-none;
   }
-  
-  .fluent-item {
-    @apply bg-white hover:bg-slate-50 rounded-lg p-4 transition-all duration-200 border border-transparent hover:border-gray-200;
+
+  .border-custom {
+    @apply border border-gray-300;
+  }
+
+  .page-container {
+    @apply min-h-screen flex flex-col bg-[#f8fafc];
+  }
+
+  .content-wrapper {
+    @apply py-8 md:py-12 flex-grow container mx-auto px-4 max-w-7xl;
+  }
+
+  .assessment-container {
+    @apply max-w-3xl mx-auto;
+  }
+
+  .hero-section {
+    @apply flex flex-col items-center justify-center text-center py-12 md:py-20;
+  }
+
+  .heading-primary {
+    @apply text-hugo-primary text-3xl md:text-4xl font-bold;
+  }
+
+  .heading-secondary {
+    @apply text-hugo-accent text-2xl md:text-3xl font-semibold;
+  }
+
+  .text-body {
+    @apply text-hugo-dark;
   }
 }

@@ -19,51 +19,40 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
 }: ProgressIndicatorProps) => {
   return (
     <nav aria-label="Progress" className="mb-8">
-      <ol className="flex items-center">
+      <ol className="flex items-center justify-between w-full">
         {steps.map((step, stepIdx) => {
           const isActive = step.id === currentStep;
           const isCompleted = completedSteps.includes(step.id);
-          const isLastStep = stepIdx === steps.length - 1;
 
           return (
-            <li
-              key={step.id}
-              className={cn(
-                "relative flex items-center",
-                !isLastStep && "w-full"
-              )}
-            >
-              <div className="flex items-center">
+            <li key={step.id} className="relative flex-1">
+              <div className="flex flex-col items-center group">
+                {stepIdx < steps.length - 1 && (
+                  <div 
+                    className={cn(
+                      "absolute top-4 left-[calc(50%+1rem)] w-[calc(100%-2rem)] h-[2px]",
+                      isCompleted ? "bg-hugo-anchor" : "bg-hugo-accent"
+                    )}
+                  />
+                )}
                 <span
                   className={cn(
-                    "assessment-progress-step",
+                    "assessment-progress-step relative z-10 bg-white",
                     isActive && "assessment-progress-step-active",
                     isCompleted && "assessment-progress-step-completed"
                   )}
                 >
-                  {isCompleted ? (
-                    <Check className="h-5 w-5" />
-                  ) : (
-                    stepIdx + 1
-                  )}
+                  {isCompleted ? <Check className="h-5 w-5" /> : (stepIdx + 1)}
                 </span>
                 <span
                   className={cn(
-                    "ml-2 text-sm font-medium",
-                    isActive ? "text-primary" : "text-gray-500"
+                    "mt-2 text-xs text-center min-h-[2rem] px-1",
+                    isActive ? "text-hugo-anchor" : "text-hugo-accent"
                   )}
                 >
-                  <span>{step.name}</span>
+                  {step.name}
                 </span>
               </div>
-              {!isLastStep && (
-                <div
-                  className={cn(
-                    "assessment-progress-connector",
-                    (isActive || isCompleted) && "assessment-progress-connector-active"
-                  )}
-                />
-              )}
             </li>
           );
         })}

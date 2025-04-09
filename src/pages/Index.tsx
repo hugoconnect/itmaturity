@@ -1,74 +1,84 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import logoColor from "@/assets/logo-color.png";
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container py-16 max-w-6xl">
+    <div className="page-container">
+      <div className="absolute top-4 right-4 md:top-8 md:right-8">
+        <img 
+          src={logoColor} 
+          alt="Company Logo" 
+          className="h-12 md:h-16 w-auto"
+        />
+      </div>
+
+      <div className="content-wrapper">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            IT maturity assessment for small businesses
+          <h1 className="heading-primary mb-4">
+            IT health check for small businesses
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-hugo-dark max-w-3xl mx-auto">
             discover where your business stands and get actionable steps to improve your IT infrastructure
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">
+            <h2 className="heading-secondary">
               is your IT working for you?
             </h2>
-            <p className="text-gray-600">
+            <p className="text-body">
               small businesses and law firms face unique IT challenges. limited resources, time constraints, and specialized needs can make managing technology difficult.
             </p>
-            <p className="text-gray-600">
+            <p className="text-body">
               our 5-minute assessment helps you identify strengths and weaknesses in your IT setup across four key areas:
             </p>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
-                <div className="bg-brand-light rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">1</div>
+                <div className="bg-hugo-primary rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">1</div>
                 <div>
                   <span className="font-semibold">
-                    people & partnership
+                    IT responsibility & support
                   </span>
-                  <p className="text-gray-600">
+                  <p className="text-body">
                     who handles your IT and how well that works
                   </p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
-                <div className="bg-brand-light rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">2</div>
+                <div className="bg-hugo-primary rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">2</div>
                 <div>
                   <span className="font-semibold">
-                    strategy & planning
+                    business & technology alignment
                   </span>
-                  <p className="text-gray-600">
-                    how IT supports your business goals
+                  <p className="text-body">
+                    how technology supports your business goals
                   </p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
-                <div className="bg-brand-light rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">3</div>
+                <div className="bg-hugo-primary rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">3</div>
                 <div>
                   <span className="font-semibold">
-                    infrastructure & systems
+                    core technology & reliability
                   </span>
-                  <p className="text-gray-600">
+                  <p className="text-body">
                     the reliability of your hardware and software
                   </p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
-                <div className="bg-brand-light rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">4</div>
+                <div className="bg-hugo-primary rounded-full w-6 h-6 flex items-center justify-center text-white font-medium mt-0.5">4</div>
                 <div>
                   <span className="font-semibold">
-                    security & compliance
+                    security & data protection
                   </span>
-                  <p className="text-gray-600">
+                  <p className="text-body">
                     how well you protect data and meet regulations
                   </p>
                 </div>
@@ -76,9 +86,9 @@ const Index = () => {
             </ul>
           </div>
 
-          <Card className="shadow-lg">
+          <Card className="fluent-card">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="heading-secondary mb-4">
                 what you'll get
               </h2>
               <div className="space-y-4 mb-8">
@@ -100,8 +110,7 @@ const Index = () => {
                     </svg>
                   </div>
                   <p>
-                    <span className="font-semibold"> your overall IT maturity score and benchmark against industry standards
-                  </span>
+                    <span className="font-semibold">your overall IT health score and benchmark against industry standards</span>
                   </p>
                 </div>
                 <div className="flex gap-3">
@@ -172,11 +181,14 @@ const Index = () => {
                 </div>
               </div>
               
-              <Button className="w-full text-lg py-6" onClick={() => navigate("/assessment")}>
+              <Button 
+                className="w-full text-lg py-6 bg-hugo-anchor hover:bg-hugo-anchor/90" 
+                onClick={() => navigate("/assessment")}
+              >
                 start your free assessment
               </Button>
               
-              <p className="text-sm text-gray-500 text-center mt-4">
+              <p className="text-sm text-hugo-dark/70 text-center mt-4">
                 takes approximately 5 minutes to complete
               </p>
             </CardContent>
@@ -184,18 +196,24 @@ const Index = () => {
         </div>
 
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">
-            why assess your IT maturity?
+          <h2 className="heading-secondary mb-4">
+            why check your IT health?
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-body max-w-3xl mx-auto mb-8">
             technology should be an enabler for your business, not a constant source of frustration. understanding where you stand is the first step toward making IT work for you.
           </p>
           
-          <Button size="lg" onClick={() => navigate("/assessment")}>
+          <Button 
+            size="lg" 
+            onClick={() => navigate("/assessment")}
+            variant="secondary" // Change to use hugo-anchor color
+          >
             take the assessment now
           </Button>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

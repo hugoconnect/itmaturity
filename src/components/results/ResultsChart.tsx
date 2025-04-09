@@ -28,15 +28,20 @@ const ResultsChart = ({ result }: ResultsChartProps) => {
     return null;
   }
 
-  const COLORS = ["#0078D4", "#50E6FF", "#2B88D8", "#0063B1"]; // Fluent 2 blue palette
+  const COLORS = [
+    "#148699", // hugo-primary
+    "#c9a085", // hugo-anchor
+    "#56707c", // hugo-accent
+    "#2b3e4b", // hugo-dark
+  ];
 
   return (
     <Card className="mb-8">
       <CardHeader>
-        <CardTitle className="text-xl">your IT maturity scores</CardTitle>
+        <CardTitle className="text-xl text-hugo-primary">your IT maturity scores</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-600 mb-6">
+        <p className="text-hugo-accent mb-6">
           here's how your business scores across the four key areas of IT maturity:
         </p>
         <Card className="rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl">

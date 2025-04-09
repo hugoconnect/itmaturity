@@ -13,16 +13,16 @@ const ActionItems = ({ result }: ActionItemsProps) => {
 
   return (
     <Card className="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl">
-      <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100/30 border-b border-gray-100 p-6">
+      <CardHeader className="bg-gradient-to-r from-hugo-light to-hugo-light/30 border-b border-hugo-light p-6">
         <CardTitle className="text-xl flex items-center gap-2">
-          <span className="text-primary font-semibold">
+          <span className="text-hugo-primary font-semibold">
             your IT health check focus area:
-          </span>{" "}
+          </span>
           {getCategoryName(focusArea as CategoryId)}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
-        <p className="mb-6 text-gray-600">
+        <p className="mb-6 text-hugo-accent">
           based on your answers, we've identified your primary focus area for improvement. 
           here are some practical next steps you can take:
         </p>

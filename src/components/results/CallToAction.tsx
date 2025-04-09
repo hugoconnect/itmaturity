@@ -1,21 +1,22 @@
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const CallToAction = () => {
+interface CallToActionProps {
+  children?: React.ReactNode;  // Change from callToActionContent to children
+}
+
+const CallToAction: React.FC<CallToActionProps> = ({ children }) => {
   return (
-    <Card className="bg-primary text-primary-foreground mb-8">
-      <CardHeader>
-        <CardTitle className="text-xl">ready to take the next step?</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-6">
-          book a free, no-obligation 30-minute strategy session to discuss your results and create a clear path forward for your business's IT needs.
-        </p>
-        <Button variant="outline" className="bg-white text-primary hover:bg-gray-100">
-          <a href="#" className="w-full">book your free strategy session</a>
-        </Button>
-      </CardContent>
-    </Card>
+    <div className="text-center mt-12 p-8 bg-hugo-light rounded-lg">
+      <h2 className="heading-secondary mb-4">
+        want to discuss your results?
+      </h2>
+      <p className="text-body mb-6">
+        schedule a free consultation to review your IT assessment and get personalized recommendations
+      </p>
+      {children} {/* Render children instead of callToActionContent */}
+    </div>
   );
 };
 

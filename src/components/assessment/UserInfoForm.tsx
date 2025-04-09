@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserInfo } from "@/types/assessment";
+import { FormattedText } from '@/components/FormattedText';
 
 interface UserInfoFormProps {
   onSubmit: (userInfo: UserInfo) => void;
   onBack: () => void;
 }
 
-const UserInfoForm = ({ onSubmit, onBack }: UserInfoFormProps) => {
+const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit, onBack }) => {
   const [userInfo, setUserInfo] = useState<UserInfo>({
     name: "",
     company: "",
@@ -28,26 +29,29 @@ const UserInfoForm = ({ onSubmit, onBack }: UserInfoFormProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserInfo((prev) => ({ ...prev, [name]: value }));
-    
-    // Clear error when typing
-    if (errors[name as keyof typeof errors]) {
-      setErrors((prev) => ({ ...prev, [name]: false }));
-    }
+    setUserInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear error when user types
+    setErrors(prev => ({
+      ...prev,
+      [name]: false
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
+    // Reset errors
     const newErrors = {
       name: !userInfo.name.trim(),
       company: !userInfo.company.trim(),
-      email: !userInfo.email.trim() || !validateEmail(userInfo.email),
+      email: !validateEmail(userInfo.email),
     };
-    
+
     setErrors(newErrors);
-    
+
     // If no errors, submit
     if (!Object.values(newErrors).some(Boolean)) {
       onSubmit(userInfo);
@@ -55,73 +59,88 @@ const UserInfoForm = ({ onSubmit, onBack }: UserInfoFormProps) => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-primary mb-2">
-          Almost Done!
+    <div>
+      <div className="text-center mb-8">
+        <h2 className="heading-secondary mb-2">
+          almost done!
         </h2>
-        <p className="text-gray-600">
-          Please provide your information to receive your personalized IT Maturity Assessment results.
+        <p className="text-body">
+          please provide your information to receive your personalized IT health check results.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">full name</Label>
+        <div>
+          <Label htmlFor="name">
+            <FormattedText>name</FormattedText>
+          </Label>
           <Input
             id="name"
             name="name"
-            placeholder="john smith"
             value={userInfo.name}
             onChange={handleChange}
             className={errors.name ? "border-red-500" : ""}
           />
           {errors.name && (
-            <p className="text-sm text-red-500">please enter your name</p>
+            <p className="text-red-500 text-sm mt-1">
+              <FormattedText>please enter your name</FormattedText>
+            </p>
           )}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="company">company name</Label>
+        <div>
+          <Label htmlFor="company">
+            <FormattedText>company</FormattedText>
+          </Label>
           <Input
             id="company"
             name="company"
-            placeholder="acme law firm"
             value={userInfo.company}
             onChange={handleChange}
             className={errors.company ? "border-red-500" : ""}
           />
           {errors.company && (
-            <p className="text-sm text-red-500">please enter your company name</p>
+            <p className="text-red-500 text-sm mt-1">
+              <FormattedText>please enter your company name</FormattedText>
+            </p>
           )}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">email address</Label>
+        <div>
+          <Label htmlFor="email">
+            <FormattedText>email</FormattedText>
+          </Label>
           <Input
             id="email"
             name="email"
             type="email"
-            placeholder="john@example.com"
             value={userInfo.email}
             onChange={handleChange}
             className={errors.email ? "border-red-500" : ""}
           />
           {errors.email && (
-            <p className="text-sm text-red-500">Please enter a valid email address</p>
+            <p className="text-red-500 text-sm mt-1">
+              <FormattedText>please enter a valid email address</FormattedText>
+            </p>
           )}
         </div>
 
-        <div className="flex justify-between pt-4">
+        <div className="flex justify-between mt-8">
           <Button
             type="button"
             variant="outline"
             onClick={onBack}
+            className="border-hugo-anchor text-hugo-anchor hover:bg-hugo-anchor/10"
           >
-            Back
+            back
           </Button>
-          <Button type="submit">
-            View Results
+
+          <Button
+            type="submit"
+            variant="secondary"
+            className="ml-auto"
+          >
+            submit
           </Button>
         </div>
       </form>

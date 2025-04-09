@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getCategoryName, getCategoryDescription } from '@/utils/assessmentUtils';
 import { cn } from '@/lib/utils';
-import { FormattedText } from '../FormattedText';
 
 interface CategoryStepProps {
   questions: Question[];
@@ -18,6 +17,19 @@ interface CategoryStepProps {
   isLastStep: boolean;
   category: CategoryId;
 }
+
+interface ProgressStep {
+  id: string;
+  name: React.ReactNode;
+}
+
+const steps: ProgressStep[] = [
+  { id: "responsibility", name: "IT responsibility & support" },
+  { id: "alignment", name: "business & technology alignment" },
+  { id: "technology", name: "core technology & reliability" },
+  { id: "security", name: "security & data protection" },
+  { id: "user-info", name: "your info" },
+];
 
 const CategoryStep: React.FC<CategoryStepProps> = ({
   questions,
@@ -48,12 +60,27 @@ const CategoryStep: React.FC<CategoryStepProps> = ({
     setIsComplete(allAnswered);
   }, [questions, categoryAnswersMap]);
 
+  useEffect(() => {
+    const firstUnansweredQuestion = questions.find(
+      q => !categoryAnswersMap[q.id]
+    );
+    
+    if (firstUnansweredQuestion) {
+      const firstInput = document.querySelector(
+        `[id^="${firstUnansweredQuestion.id}"]`
+      ) as HTMLElement;
+      if (firstInput) {
+        firstInput.focus();
+      }
+    }
+  }, [category, categoryAnswersMap]);
+
   const handleAnswerChange = (questionId: string, valueStr: string | null) => {
     const value = valueStr === null ? null : parseInt(valueStr, 10);
     const updatedMap = { ...categoryAnswersMap, [questionId]: value };
     setCategoryAnswersMap(updatedMap);
     const updatedAnswersArray: Answer[] = Object.entries(updatedMap)
-      .map(([qId, val]) => ({ questionId: qId, value: val }));
+      .map(([qId, val]) => ({ questionId: qId, value: val, category }));
     onAnswersUpdate(updatedAnswersArray);
   };
 
@@ -63,21 +90,24 @@ const CategoryStep: React.FC<CategoryStepProps> = ({
   return (
     <Card className="w-full border-0 shadow-none bg-transparent">
       <CardHeader className="px-1 pb-6">
-        <CardTitle className="text-2xl md:text-3xl font-semibold">
-          <FormattedText>{categoryName}</FormattedText>
+        <CardTitle className="text-2xl md:text-3xl font-semibold text-hugo-primary" tabIndex={0}>
+          {getCategoryName(category)}
         </CardTitle>
-        <CardDescription className="pt-2 text-base">
-          <FormattedText>{categoryDescription}</FormattedText>
+        <CardDescription className="pt-2 text-base text-hugo-dark">
+          {categoryDescription}
         </CardDescription>
-        <p className="text-muted-foreground mt-3 text-base">
-          <FormattedText>please rate how much you agree with each statement about your business.</FormattedText>
+        <p className="text-hugo-accent mt-3 text-base">
+          please rate how much you agree with each statement about your business
         </p>
       </CardHeader>
       <CardContent className="px-1 space-y-8">
-        {questions.map((question) => (
+        {questions.map((question, index) => (
           <div key={question.id}>
-            <Label htmlFor={question.id} className="text-base font-medium mb-4 block">
-              <FormattedText>{question.text}</FormattedText>
+            <Label 
+              htmlFor={question.id} 
+              className="text-base font-medium mb-4 block text-hugo-dark"
+            >
+              {question.text}
             </Label>
             <RadioGroup
               id={question.id}
@@ -90,17 +120,24 @@ const CategoryStep: React.FC<CategoryStepProps> = ({
                   key={value}
                   htmlFor={`${question.id}-${value}`}
                   className={cn(
-                    "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer transition-colors duration-150",
-                    categoryAnswersMap[question.id] === value ? "border-primary ring-2 ring-primary" : "hover:border-muted-foreground/50"
+                    "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 cursor-pointer transition-colors duration-150",
+                    "hover:bg-hugo-light/50 focus-within:bg-hugo-light/50",
+                    "focus-within:ring-2 focus-within:ring-hugo-primary focus-within:border-hugo-primary",
+                    categoryAnswersMap[question.id] === value 
+                      ? "border-hugo-anchor ring-2 ring-hugo-anchor" 
+                      : "hover:border-hugo-accent/50"
                   )}
                 >
-                  <RadioGroupItem value={value.toString()} id={`${question.id}-${value}`} className="sr-only" />
-                  <span className="font-semibold text-lg mb-1">{value}</span>
+                  <RadioGroupItem 
+                    value={value.toString()} 
+                    id={`${question.id}-${value}`} 
+                    className="sr-only focus:ring-2 focus:ring-hugo-primary"
+                    tabIndex={!categoryAnswersMap[question.id] || categoryAnswersMap[question.id] === value ? 0 : -1}
+                  />
+                  <span className="font-semibold text-lg mb-1 text-hugo-anchor">{value}</span>
                   {(value === 1 || value === 5) && (
-                    <span className="text-xs text-center text-muted-foreground">
-                      <FormattedText>
-                        {value === 1 ? (question.scale?.minLabel || "strongly disagree") : (question.scale?.maxLabel || "strongly agree")}
-                      </FormattedText>
+                    <span className="text-xs text-center text-hugo-accent">
+                      {value === 1 ? "strongly disagree" : "strongly agree"}
                     </span>
                   )}
                 </Label>
@@ -109,16 +146,34 @@ const CategoryStep: React.FC<CategoryStepProps> = ({
           </div>
         ))}
       </CardContent>
-      <div className="flex justify-between pt-6 mt-4">
+      <div className="flex justify-between mt-8">
         {!isFirstStep && (
-          <Button variant="outline" onClick={onBack}>
-            <FormattedText>back</FormattedText>
+          <Button
+            variant="outline"
+            onClick={onBack}
+            className="border-hugo-anchor text-hugo-anchor hover:bg-hugo-anchor/10"
+          >
+            back
           </Button>
         )}
-        <Button onClick={onNext} disabled={!isComplete}>
-          <FormattedText>next</FormattedText>
+        
+        <Button
+          variant="secondary"
+          onClick={onNext}
+          className="ml-auto"
+          disabled={!isComplete}
+          aria-disabled={!isComplete}
+          title={!isComplete ? "please answer all questions before proceeding" : undefined}
+        >
+          {isLastStep ? "submit" : "next"}
         </Button>
       </div>
+      
+      {!isComplete && (
+        <p className="text-hugo-accent text-sm mt-4 text-center">
+          please answer all questions to proceed
+        </p>
+      )}
     </Card>
   );
 };

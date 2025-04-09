@@ -14,13 +14,13 @@ const maturityLevels: { level: MaturityLevel; min: number; max: number }[] = [
 export const getCategoryName = (category: CategoryId): string => {
   switch (category) {
     case "responsibility":
-      return "IT Responsibility & Support";
+      return "IT responsibility & support";
     case "alignment":
-      return "Business & Technology Alignment";
+      return "business & technology alignment";
     case "technology":
-      return "Core Technology & Reliability";
+      return "core technology & reliability";
     case "security":
-      return "Security & Data Protection";
+      return "security & data protection";
     default:
       return category;
   }
@@ -30,13 +30,13 @@ export const getCategoryName = (category: CategoryId): string => {
 export const getCategoryDescription = (category: CategoryId): string => {
   switch (category) {
     case "responsibility":
-      return "How IT issues are currently handled in your business.";
+      return "how IT issues are currently handled in your business";
     case "alignment":
-      return "How well technology supports your business operations and goals.";
+      return "how well technology supports your business operations and goals";
     case "technology":
-      return "How well your essential tech tools function day-to-day.";
+      return "how well your essential tech tools function day-to-day";
     case "security":
-      return "How well your critical business and client data is protected.";
+      return "how well your critical business and client data is protected";
     default:
       return "";
   }
@@ -46,15 +46,15 @@ export const getCategoryDescription = (category: CategoryId): string => {
 export const getMaturityLevelName = (level: MaturityLevel): string => {
   switch (level) {
     case "reactive":
-      return "Reactive";
+      return "reactive";
     case "foundational":
-      return "Foundational";
+      return "foundational";
     case "managed":
-      return "Managed";
+      return "managed";
     case "proactive":
-      return "Proactive";
+      return "proactive";
     case "strategic":
-      return "Strategic";
+      return "strategic";
     default:
       return level;
   }
@@ -63,11 +63,11 @@ export const getMaturityLevelName = (level: MaturityLevel): string => {
 // Get description of maturity level
 export const getMaturityLevelDescription = (level: MaturityLevel): string => {
   const descriptions: Record<MaturityLevel, string> = {
-    strategic: "technology is a strategic advantage, processes are optimized, security is robust.",
-    proactive: "processes are well-defined, technology is planned, security is prioritized.",
-    managed: "processes are developing, key systems are stable, some planning and security measures exist.",
-    foundational: "basic systems in place but reactive, limited planning and security.",
-    reactive: "minimal processes, unstable systems, security gaps present."
+    strategic: "technology is a strategic advantage, processes are optimized, security is robust",
+    proactive: "processes are well-defined, technology is planned, security is prioritized",
+    managed: "processes are developing, key systems are stable, some planning and security measures exist",
+    foundational: "basic systems in place but reactive, limited planning and security",
+    reactive: "minimal processes, unstable systems, security gaps present"
   };
   return descriptions[level];
 };
@@ -76,32 +76,35 @@ export const getMaturityLevelDescription = (level: MaturityLevel): string => {
 export const getActionItems = (category: CategoryId): string[] => {
   const actionItems: Record<CategoryId, string[]> = {
     responsibility: [
-      "clarify internal IT point person: designate someone internally (even if wearing multiple hats) as the first point of contact for IT issues to reduce confusion.",
-      "evaluate support speed: track how long it takes to get help when needed. is it fast enough? if not, explore options for faster support.",
+      "clarify internal IT point person: designate someone internally (even if wearing multiple hats) as the first point of contact for IT issues to reduce confusion",
+      "evaluate support speed: track how long it takes to get help when needed. is it fast enough? if not, explore options for faster support",
       "define support needs: list the top 3 recurring IT problems your team faces. does your current support (if any) address these effectively?",
-      "consider proactive support: if you currently rely only on calling someone when things break (break-fix), explore the benefits of ongoing managed IT support for preventing issues.",
-      "assess IT expertise: does whoever helps with IT understand your specific business or legal software needs? identify critical skill gaps."
+      "consider proactive support: if you currently rely only on calling someone when things break (break-fix), explore the benefits of ongoing managed IT support for preventing issues",
+      "assess IT expertise: does whoever helps with IT understand your specific business or legal software needs? identify critical skill gaps"
+    ],
+    "user-info": [
+      "Complete your user information to get personalized recommendations"
     ],
     alignment: [
-      "Start basic IT budgeting: estimate your current annual spending on tech (subscriptions, hardware, support). How does this fit into your overall budget?",
-      "Quick asset list: create a simple inventory of your essential tech: how many main computers? What key software licenses? What cloud services are you paying for?",
-      "Link tech to business goals: identify 1-2 key goals for the next year. Brainstorm specifically how better technology could help achieve them (e.g., improve remote client meetings, speed up document processing).",
-      "Plan hardware refresh: check the age of your computers/laptops. Make a simple plan to replace the oldest ones *before* they fail and cause major disruption.",
-      "Gather team feedback: ask your team – what are the biggest technology frustrations that slow down their work or impact client service?"
+      "start basic IT budgeting: estimate your current annual spending on tech (subscriptions, hardware, support). how does this fit into your overall budget?",
+      "quick asset list: create a simple inventory of your essential tech: how many main computers? what key software licenses? what cloud services are you paying for?",
+      "link tech to business goals: identify 1-2 key goals for the next year. brainstorm specifically how better technology could help achieve them (e.g., improve remote client meetings, speed up document processing)",
+      "plan hardware refresh: check the age of your computers/laptops. make a simple plan to replace the oldest ones before they fail and cause major disruption",
+      "gather team feedback: ask your team – what are the biggest technology frustrations that slow down their work or impact client service?"
     ],
     technology: [
-      "Log major IT issues: for one month, keep a simple log of core system problems (email outages, internet slowness, software crashes). Identify the biggest, most frequent pain points.",
-      "Review core software fit: is your main business/practice management software causing headaches or missing key features? Explore training, updates, or alternatives.",
-      "Assess cloud opportunities: could using cloud tools (like Microsoft 365/Google Workspace for email/files) improve your team's collaboration or ability to work remotely?",
-      "Evaluate file sharing security & ease: how does your team share files securely internally and externally? Are there easier or safer methods available?",
-      "Check software licenses: quickly verify that all essential business software is properly licensed and up-to-date to avoid legal or security problems."
+      "log major IT issues: for one month, keep a simple log of core system problems (email outages, internet slowness, software crashes). identify the biggest, most frequent pain points.",
+      "review core software fit: is your main business/practice management software causing headaches or missing key features? explore training, updates, or alternatives.",
+      "assess cloud opportunities: could using cloud tools (like Microsoft 365/Google Workspace for email/files) improve your team's collaboration or ability to work remotely?",
+      "evaluate file sharing security & ease: how does your team share files securely internally and externally? are there easier or safer methods available?",
+      "check software licenses: quickly verify that all essential business software is properly licensed and up-to-date to avoid legal or security problems."
     ],
     security: [
-      "Verify backups now (Priority #1): confirm critical data is being backed up regularly. **Most importantly, schedule a test restore this month.** If backups aren't happening or tested, address this immediately.",
-      "Enable MFA everywhere: turn on multi-factor authentication (MFA/2FA) immediately for all email accounts (Microsoft 365/Google) and other critical online services (like banking). This is a crucial security step.",
-      "Improve password habits: implement and communicate a basic strong password policy (long, unique passwords). Strongly recommend using a password manager for your team.",
-      "Quick security reminder: send a brief email or hold a 15-min meeting reminding staff about spotting phishing scams and practicing safe browsing. Even a short reminder helps.",
-      "Review data access: check who has access to sensitive client/business files. Remove permissions for anyone who doesn't absolutely need it for their job."
+      "verify backups now (priority #1): confirm critical data is being backed up regularly. **most importantly, schedule a test restore this month.** if backups aren't happening or tested, address this immediately.",
+      "enable MFA everywhere: turn on multi-factor authentication (MFA/2FA) immediately for all email accounts (Microsoft 365/Google) and other critical online services (like banking). this is a crucial security step.",
+      "improve password habits: implement and communicate a basic strong password policy (long, unique passwords). strongly recommend using a password manager for your team.",
+      "quick security reminder: send a brief email or hold a 15-min meeting reminding staff about spotting phishing scams and practicing safe browsing. even a short reminder helps.",
+      "review data access: check who has access to sensitive client/business files. remove permissions for anyone who doesn't absolutely need it for their job."
     ]
   };
   return actionItems[category];
@@ -115,6 +118,10 @@ export const calculateResults = (answers: Answer[]): AssessmentResult => {
     alignment: { score: 0, count: 0 },
     technology: { score: 0, count: 0 },
     security: { score: 0, count: 0 },
+    "user-info": {
+      score: 0,
+      count: 0
+    }
   };
 
   // Calculate scores per category
@@ -186,22 +193,22 @@ export const calculateResults = (answers: Answer[]): AssessmentResult => {
   return {
     overallScore: overallPercentage,
     maturityLevel,
+    maturityDescription: getMaturityLevelDescription(maturityLevel),
     scores: categoryScores,
     categoryScores: formattedCategoryScores,
     focusArea,
-    summary: getMaturityLevelDescription(maturityLevel),
-    responsibilityText, // Add this line
+    responsibilityText,
   };
 };
 
 const generateResponsibilityText = (score: number): string => {
   if (score >= 80) {
-    return "your organization has strong IT responsibility and support structures in place.";
+    return "your organization has strong IT responsibility and support structures in place";
   } else if (score >= 60) {
-    return "your IT responsibility and support setup is solid but has room for improvement.";
+    return "your IT responsibility and support setup is solid but has room for improvement";
   } else if (score >= 40) {
-    return "your IT responsibility and support framework needs attention to better serve your needs.";
+    return "your IT responsibility and support framework needs attention to better serve your needs";
   } else {
-    return "establishing clear IT responsibility and support structures should be a priority.";
+    return "establishing clear IT responsibility and support structures should be a priority";
   }
 };

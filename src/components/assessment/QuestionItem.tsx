@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { 
   Radio, 
@@ -32,7 +31,7 @@ const QuestionItem = ({ question, value, onChange }: QuestionItemProps) => {
 
   return (
     <div className="space-y-4 mb-8">
-      <h3 className="text-lg font-medium">{question.text}</h3>
+      <h3 className="text-lg font-medium text-hugo-dark">{question.text}</h3>
       <RadioGroup
         value={selectedValue}
         onChange={handleChange}
@@ -44,8 +43,10 @@ const QuestionItem = ({ question, value, onChange }: QuestionItemProps) => {
             <div key={rating} className="flex flex-col items-center">
               <div className={`
                 w-full cursor-pointer relative p-3 rounded-md border 
-                ${selectedValue === rating.toString() ? 'border-primary bg-blue-50' : 'border-gray-200'} 
-                transition-all duration-200 hover:border-primary hover:bg-blue-50
+                ${selectedValue === rating.toString() 
+                  ? 'border-hugo-primary bg-hugo-light' 
+                  : 'border-gray-200'} 
+                transition-all duration-200 hover:border-hugo-primary hover:bg-hugo-light/50
               `}>
                 <Radio
                   value={rating.toString()}
@@ -53,8 +54,8 @@ const QuestionItem = ({ question, value, onChange }: QuestionItemProps) => {
                   label={{
                     children: (
                       <div className="flex flex-col items-center justify-center w-full text-center">
-                        <span className="text-2xl font-bold">{rating}</span>
-                        <span className="mt-1 text-xs md:text-sm text-gray-600">
+                        <span className="text-2xl font-bold text-hugo-primary">{rating}</span>
+                        <span className="mt-1 text-xs md:text-sm text-hugo-accent">
                           {rating === 1
                             ? "Strongly Disagree"
                             : rating === 5
@@ -74,8 +75,10 @@ const QuestionItem = ({ question, value, onChange }: QuestionItemProps) => {
           <div className="col-span-1">
             <div className={`
               w-full cursor-pointer relative p-3 rounded-md border 
-              ${selectedValue === "na" ? 'border-primary bg-blue-50' : 'border-gray-200'} 
-              transition-all duration-200 hover:border-primary hover:bg-blue-50
+              ${selectedValue === "na" 
+                ? 'border-hugo-primary bg-hugo-light' 
+                : 'border-gray-200'} 
+              transition-all duration-200 hover:border-hugo-primary hover:bg-hugo-light/50
             `}>
               <Radio
                 value="na"
@@ -83,7 +86,7 @@ const QuestionItem = ({ question, value, onChange }: QuestionItemProps) => {
                 label={{
                   children: (
                     <div className="flex flex-col items-center justify-center w-full text-center">
-                      <span className="text-sm font-medium text-gray-600">
+                      <span className="text-sm font-medium text-hugo-primary">
                         N/A
                       </span>
                     </div>

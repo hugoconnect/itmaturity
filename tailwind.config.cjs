@@ -31,6 +31,13 @@ module.exports = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        hugo: {
+          primary: '#148699',
+          anchor: '#c9a085',
+          accent: '#56707c',
+          light: '#eff5f7',
+          dark: '#2b3e4b',
+        },
       },
     },
   },

@@ -1,20 +1,20 @@
-// server/index.ts (v3: try direct usage with namespace import)
-import * as express from 'express';
-import * as cors from 'cors';
-// keep assessmentroutes import as is for now
-import assessmentroutes from './src/routes/assessment';
+// server/index.ts
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv'; // If you were using environment variables
 
-const app = express(); // <--- use express directly, instead of express.default()
+dotenv.config(); // If you were using environment variables
 
-app.use(cors({ origin: '*' })); // <--- use cors directly, instead of cors.default()
-app.use(express.json()); // <--- use express.json directly (this is usually correct)
+const app = express();
+const port = process.env.PORT || 3001; // Or whatever port you had
 
-// mount routes
-app.use('/api/assessment', assessmentroutes);
+app.use(cors({ origin: '*' })); // Or your specific CORS configuration
+app.use(express.json()); // If you were parsing JSON request bodies
 
-const port = process.env.port || 3001; // make sure env var name matches case used in greengeeks
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
+app.get('/', (req, res) => {
+  res.send('Server is running!'); // Or your original simple route
 });
 
-export default app;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

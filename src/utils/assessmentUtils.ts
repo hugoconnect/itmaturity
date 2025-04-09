@@ -1,5 +1,6 @@
+// src/utils/assessmentUtils.ts
 import { Answer, AssessmentResult, CategoryId, CategoryScore, MaturityLevel } from "../types/assessment";
-import { questions } from "../../shared/data/assessmentQuestions";
+import { questions } from "../data/assessmentQuestions";
 
 // Define maturity level thresholds
 const maturityLevels: { level: MaturityLevel; min: number; max: number }[] = [
@@ -113,7 +114,9 @@ export const getActionItems = (category: CategoryId): string[] => {
 // Calculate results from answers
 export const calculateResults = (answers: Answer[]): AssessmentResult => {
   // Initialize category scores
-  const categoryScores: Record<CategoryId, { score: number; count: number }> = {
+  type CategoryScoreType = { score: number; count: number };
+  type CategoryScores = Record<CategoryId, CategoryScoreType> & { [key: string]: CategoryScoreType };
+  const categoryScores: CategoryScores = {
     responsibility: { score: 0, count: 0 },
     alignment: { score: 0, count: 0 },
     technology: { score: 0, count: 0 },
@@ -128,7 +131,7 @@ export const calculateResults = (answers: Answer[]): AssessmentResult => {
   answers.forEach((answer) => {
     // Skip null answers (N/A)
     if (answer.value === null) return;
-    
+
     const question = questions.find((q) => q.id === answer.questionId);
     if (question) {
       categoryScores[question.category].score += answer.value;
@@ -142,7 +145,7 @@ export const calculateResults = (answers: Answer[]): AssessmentResult => {
     const maxPossibleScore = categoryScores[category].count * 5;
     const score = categoryScores[category].score;
     const percentage = maxPossibleScore > 0 ? (score / maxPossibleScore) * 100 : 0;
-    
+
     return {
       category,
       score,
@@ -169,7 +172,7 @@ export const calculateResults = (answers: Answer[]): AssessmentResult => {
 
   // Determine maturity level
   let maturityLevel: MaturityLevel;
-  
+
   if (overallPercentage >= 80) {
     maturityLevel = 'strategic';
   } else if (overallPercentage >= 60) {

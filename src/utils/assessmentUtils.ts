@@ -1,5 +1,5 @@
 import { Answer, AssessmentResult, CategoryId, CategoryScore, MaturityLevel } from "../types/assessment";
-import { questions } from "../data/assessmentQuestions";
+import { questions } from "../../shared/data/assessmentQuestions";
 
 // Define maturity level thresholds
 const maturityLevels: { level: MaturityLevel; min: number; max: number }[] = [

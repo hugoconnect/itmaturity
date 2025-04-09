@@ -2,8 +2,8 @@
 import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import { AssessmentResult, UserInfo } from '../../types/assessment';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs'; // <--- changed import style
+import * as path from 'path'; // <--- changed import style
 import { getActionItems, getCategoryName } from '/workspaces/itmaturity/src/utils/assessmentUtils';
 import { sendEmail } from '../../utils/emailSender'; // Corrected path
 

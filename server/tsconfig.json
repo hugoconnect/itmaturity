@@ -1,0 +1,30 @@
+// server/tsconfig.json (added baseurl and paths)
+{
+  "compileroptions": {
+    "target": "es2020",            
+    "module": "commonjs",         
+    "outdir": "./dist",           
+    "rootdir": "./",            
+    "strict": true,               
+    "esmoduleinterop": true,      
+    "skiplibcheck": true,         
+    "forceconsistentcasinginfilenames": true,
+    "resolvejsonmodule": true,      
+    "moduleresolution": "node",    
+    // add these lines for path alias resolution:
+    "baseurl": "../",             // base directory is one level up (project root)
+    "paths": {
+      "@/*": ["./src/*"]         // map '@/...' to './src/...' relative to baseurl
+    }
+  },
+  "include": [
+    "./index.ts",                
+    "./src/**/*.ts",             
+    "./types/**/*.ts",           
+    "../shared/**/*.ts"          
+  ],
+  "exclude": [
+    "node_modules",              
+    "dist"                       
+  ]
+}

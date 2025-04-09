@@ -1,37 +1,50 @@
-import nodemailer from 'nodemailer';
+// server/utils/emailSender.ts (v2: use service option)
+import * as nodemailer from 'nodemailer'; 
 
 interface EmailOptions {
   to: string;
   subject: string;
   text: string;
+  bcc?: string | string[]; 
   attachments?: Array<{
     filename: string;
     content: Buffer;
+    contentType?: string;
   }>;
 }
 
-// Create reusable transporter object using environment variables
+// use 'service' option for outlook365/outlook.com
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT),
-  secure: true,
+  service: "outlook365", // <--- use service name
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.smtp_user, // your outlook.com/m365 email
+    pass: process.env.smtp_pass, // your app password
   },
 });
 
 export async function sendEmail(options: EmailOptions): Promise<void> {
   try {
+    // use smtp_user as fallback if smtp_from is not set in environment
+    const fromAddress = process.env.smtp_from || process.env.smtp_user; 
+    if (!fromAddress) {
+        throw new Error("smtp_from or smtp_user environment variable must be set.");
+    }
+
     await transporter.sendMail({
-      from: process.env.SMTP_FROM,
+      from: fromAddress,
       to: options.to,
+      bcc: options.bcc, 
       subject: options.subject,
       text: options.text,
       attachments: options.attachments,
     });
   } catch (error) {
-    console.error('Error sending email:', error);
-    throw new Error('Failed to send email');
+    console.error('error sending email:', error);
+    // Rethrowing or handling appropriately
+    if (error instanceof Error) {
+       throw new Error(`failed to send email: ${error.message}`);
+    } else {
+       throw new Error('failed to send email due to unknown error');
+    }
   }
 }

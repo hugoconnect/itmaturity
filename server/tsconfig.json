@@ -1,24 +1,30 @@
+// server/tsconfig.json (remove baseurl/paths)
 {
-  "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "noEmit": false
+  "compileroptions": {
+    "target": "es2020",            
+    "module": "commonjs",         
+    "outdir": "./dist",           
+    "rootdir": "./",            
+    "strict": true,               
+    "esmoduleinterop": true,      
+    "skiplibcheck": true,         
+    "forceconsistentcasinginfilenames": true,
+    "resolvejsonmodule": true,      
+    "moduleresolution": "node",    
+    "noemit": false 
+    // baseurl and paths removed
   },
   "include": [
-    "./index.ts",
-    "./src/**/*.ts",
-    "./types/**/*.ts",
-    "../shared/**/*.ts"
+    "./index.ts",                
+    "./src/**/*.ts",             
+    "./types/**/*.ts",           
+    "../shared/**/*.ts",         
+    // keep explicit includes for now
+     "../src/utils/assessmentutils.ts", 
+     "../src/data/assessmentquestions.ts" 
   ],
   "exclude": [
-    "node_modules",
-    "dist"
+    "node_modules",              
+    "dist"                       
   ]
 }

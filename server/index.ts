@@ -1,6 +1,7 @@
-import express from 'express';
- import cors from 'cors';
- import dotenv from 'dotenv'; // If you were using environment variables
+import type { Express } from 'express';
+import * as express from 'express';
+import * as cors from 'cors';
+import * as dotenv from 'dotenv'; // If you were using environment variables
  
  dotenv.config(); // If you were using environment variables
  
